@@ -88,6 +88,11 @@ set_target_properties(ILUT PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${LIBDIR})
 set_target_properties(ILUT PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBDIR})
 set_target_properties(ILUT PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${LIBDIR})
 
+if(WIN32)
+  # add d when building debug version on win32
+	set_target_properties(ILUT PROPERTIES OUTPUT_NAME "ILUT$<$<CONFIG:Debug>:d>")
+endif(WIN32)
+
 if(UNICODE)
 	MESSAGE("Compiling ILUT Unicode")
 	add_definitions(-DUNICODE -D_UNICODE)

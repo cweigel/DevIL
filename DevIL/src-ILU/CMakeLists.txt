@@ -68,6 +68,11 @@ set_target_properties(ILU PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${LIBDIR})
 set_target_properties(ILU PROPERTIES LIBRARY_OUTPUT_DIRECTORY ${LIBDIR})
 set_target_properties(ILU PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${LIBDIR})
 
+if(WIN32)
+  # add d when building debug version on win32
+	set_target_properties(ILU PROPERTIES OUTPUT_NAME "ILU$<$<CONFIG:Debug>:d>")
+endif(WIN32)
+
 if(UNICODE)
 	MESSAGE("Compiling ILU Unicode")
 	add_definitions(-DUNICODE -D_UNICODE)

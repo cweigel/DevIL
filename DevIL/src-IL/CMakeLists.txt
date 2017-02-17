@@ -222,8 +222,9 @@ set_target_properties(IL PROPERTIES ARCHIVE_OUTPUT_DIRECTORY ${LIBDIR})
 if(MSVC)
 	# Linux uses libIL.so, libILU.so, and libILUT.so, but Windows uses
 	#  DevIL.dll, ILU.dll, and ILUT.dll.
-	set_target_properties(IL PROPERTIES OUTPUT_NAME "DevIL")
+	set_target_properties(IL PROPERTIES OUTPUT_NAME "DevIL$<$<CONFIG:Debug>:d>")
 endif(MSVC)
+
 
 if(UNICODE)
 	MESSAGE("DevIL, Compiling IL Unicode")
